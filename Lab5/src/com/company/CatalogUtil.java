@@ -10,26 +10,21 @@ public class CatalogUtil {
                 new FileOutputStream(catalog.getPath()))){
             oos.writeObject(catalog);
         }
-        catch (IOException e) {
-            System.out.println("Error");
-            e.printStackTrace();
-        }
     }
-    public static void Catalog load(String path)
+    public static Catalog load(String path)
         throws InvalidCatalogException {
-        try ( var oin = new ObjectInputStream(
-                new FileInputStream(path))){
-            oin.readObject(path);
-
+        try (var ois = new ObjectInputStream(
+                new FileInputStream(path))) {
+            ois.readObject(path);
         }
-
-
     }
-
     public static void view(Document doc) {
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.open(doc);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
