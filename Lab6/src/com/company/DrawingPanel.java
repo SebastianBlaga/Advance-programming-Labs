@@ -44,10 +44,23 @@ public class DrawingPanel extends JPanel {
         int r = random.nextInt(128) + 128;
         int g = random.nextInt(128) + 128;
         int b = random.nextInt(128) + 128;
-        Color color = new Color(r, g, b);
+        Color color = new Color(r, g, b, .5f);
 ;
         graphics.setColor(color);
-        graphics.fill(new RegularPolygon(x, y, radius, sides));
+        String type = frame.configPanel.typeCombo.getSelectedItem().toString();
+        if(type == "Square")
+        {
+            frame.configPanel.sidesField.setValue(4);
+            graphics.fill(new RegularPolygon(x,y,radius,sides));
+
+        }
+        if(type == "Ellipsed2D")
+        {
+            graphics.fill(new NodeShape(x,y,radius));
+        }
+        else {
+            graphics.fill(new RegularPolygon(x, y, radius, sides));
+        }
     }
 
     @Override
