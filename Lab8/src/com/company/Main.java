@@ -1,5 +1,7 @@
 package com.company;
 
+import java.sql.SQLException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -18,6 +20,11 @@ public class Main {
         artistC.findByName("Armin Van Buuren");
         albumC.findByArtist(1);
 
+        try {
+            dataB.conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }
